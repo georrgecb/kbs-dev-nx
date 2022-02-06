@@ -27,22 +27,20 @@ const Search = () => {
   };
 
   return (
-    <section className="p-5 bg-red-50 lg:w-96 h-screen">
+    <section className="p-5 bg-green-component lg:w-96 h-screen">
       {/* Input Search Container */}
       <div className="relative">
         {/* Input Box */}
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
-            className="relative z-30 bg-red-300 appearance-none border-2 border-white w-full py-4 px-4 text-white
-          text-xl leading-tight placeholder-white focus:outline-none focus:border-black"
+            className="relative z-30 bg-teal-400 appearance-none border-2 border-white w-full py-4 px-4 text-white
+          text-xl leading-tight placeholder-white focus:outline-none focus:border-black shadow-md"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search"
           />
         </form>
-        {/* Input Box Border */}
-        <div className="absolute z-20 top-1 left-1 w-full h-full border-black border-r-4 border-b-4" />
         {/* Advanced Search Icon */}
         <svg
           onClick={() => setAdvancedBox(!advancedBox)}
@@ -57,19 +55,19 @@ const Search = () => {
         <div
           className={`${
             advancedBox ? "flex" : "hidden"
-          } absolute z-30 top-20 left-0 border-2 border-black shadow-xl bg-red-200 w-full h-20 justify-start p-4`}
+          } absolute z-30 top-20 left-0 border-2 border-white shadow-xl bg-teal-900 w-full h-20 justify-start p-4`}
         >
           <div className="flex gap-3 justify-evenly items-center">
             <div className="form-check form-check-inline">
               <input
-                className="appearance-none h-4 w-4 rounded-sm bg-white checked:bg-black checked:border-black  focus:outline-none transition duration-200 mt-1 align-top float-left mr-2 cursor-pointer"
+                className="appearance-none h-4 w-4 rounded-sm bg-white checked:bg-green-400 checked:border-black  focus:outline-none transition duration-200 mt-1 align-top float-left mr-2 cursor-pointer"
                 type="checkbox"
                 id="inlineCheckbox2"
                 checked={searchDescription}
                 onChange={() => setSearchDescription(!searchDescription)}
               />
               <label
-                className="inline-block text-black font-normal"
+                className="inline-block text-white font-normal"
                 htmlFor="inlineCheckbox2"
               >
                 Search in description
@@ -81,7 +79,7 @@ const Search = () => {
         <div
           className={
             query &&
-            `absolute bg-red-50 shadow-2xl z-30 top-20 left-0 w-full border-2 border-black`
+            `absolute bg-green-component shadow-2xl z-30 top-20 left-0 w-full border-2 border-green-500`
           }
         >
           {JsonData.data
@@ -103,7 +101,7 @@ const Search = () => {
             ))}
         </div>
       </div>
-      <p className="flex flex-col border-4 border-gray-200 mt-5 italic justify-start p-2 text-md text-gray-700">
+      <p className="flex flex-col shadow-md bg-gradient-to-br from-teal-50 mt-5 justify-start p-2 text-md text-teal-700">
         <span>Hit enter to save the search in local storage.</span>
         <br />
         <span>
@@ -122,7 +120,7 @@ const Search = () => {
       </p>
       {/* Saved searches */}
       <div className="absolute z-20  bottom-0 left-0 p-5 w-96">
-        <p className="font-semibold text-md text-gray-700">
+        <p className="font-semibold text-md text-teal-700">
           Your search history:
         </p>
         <ul>
@@ -133,7 +131,7 @@ const Search = () => {
               .filter((el, index) => index < 5)
               .map((search, index) => (
                 <li
-                  className="text-lg font-semibold italic text-white p-1 bg-red-300 w-full my-2"
+                  className="text-lg font-semibold italic text-white p-1 bg-green-400 w-full my-2 shadow-md"
                   key={index}
                 >
                   &quot;{search}&quot;

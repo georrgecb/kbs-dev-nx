@@ -29,7 +29,7 @@ const Product = ({ item, index }) => {
                 }).format(item.price)}
               </span>
 
-              <p className="text-black rounded-md border-r-4 border-b-4 border-red-300 border hover:border-purple-600 font-medium text-sm p-3 text-center cursor-pointer">
+              <p className="text-black rounded-md border-r-4 border-b-4 border-teal-300 border hover:border-teal-600 font-medium text-sm p-3 text-center cursor-pointer">
                 Add to cart
               </p>
             </div>

@@ -27,7 +27,7 @@ const ProductPage = ({ product }) => {
       {/* Page Header */}
       <header className="absolute top-0 left-0 p-10">
         <Link href="/">
-          <a className="font-bold hover:underline underline-offset-2 decoration-red-400 decoration-4 cursor-pointer">
+          <a className="font-bold hover:underline underline-offset-2 decoration-teal-400 decoration-4 cursor-pointer">
             Back to Homepage
           </a>
         </Link>
@@ -35,7 +35,7 @@ const ProductPage = ({ product }) => {
       {/* Page Body */}
       <main className="bg-custom-page py-5 flex flex-col gap-10 lg:flex-row h-screen w-full justify-center items-center">
         {/* Product Image */}
-        <section className="border-r-8 border-b-8 border-red-400 m-5 flex justify-center items-center">
+        <section className="border-r-8 border-b-8 border-teal-400 m-5 flex justify-center items-center">
           <Image
             src={`https://loremflickr.com/450/450?random=${product.name}`}
             width={450}
@@ -46,7 +46,7 @@ const ProductPage = ({ product }) => {
         {/* Product Info */}
         <section className="flex-1 px-5 md:px-10 bg-gradient-to-l from-gray-100">
           {/* Product Name */}
-          <h3 className="py-5 text-red-400 text-4xl italic font-bold">
+          <h3 className="py-5 text-teal-400 text-4xl italic font-bold">
             {product.name}
           </h3>
           {/* Product Description */}
@@ -73,7 +73,7 @@ const ProductPage = ({ product }) => {
               </span>
               <span className="text-sm text-gray-600">after tax</span>
             </div>
-            <p className="text-red-400 rounded-md border-r-4 border-b-4 border-red-400 border hover:border-purple-600 font-medium text-md p-3 text-center cursor-pointer flex justify-center items-center">
+            <p className="text-teal-400 rounded-md border-r-4 border-b-4 border-teal-400 border hover:border-teal-600 font-medium text-md p-3 text-center cursor-pointer flex justify-center items-center">
               Add to cart
             </p>
           </div>

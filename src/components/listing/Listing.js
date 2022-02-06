@@ -41,7 +41,7 @@ const Listing = () => {
   return (
     <section className="flex-1 bg-custom-page flex flex-col justify-around items-center p-5 h-screen">
       {/* Sorting and Filtering Bar */}
-      <div className="w-full md:flex bg-red-50 p-4 justify-center items-center">
+      <div className="w-full md:flex bg-green-component p-4 justify-center items-center">
         {/* Category List */}
         <div>
           <ul className="text-black flex">

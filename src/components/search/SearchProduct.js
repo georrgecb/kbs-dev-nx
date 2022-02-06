@@ -6,7 +6,7 @@ const SearchProduct = ({ item }) => {
   return (
     <Link href={`/${item.slug}`}>
       <a>
-        <div className="flex justify-start gap-2 items-center p-2 bg-black m-2">
+        <div className="flex justify-start gap-2 items-center p-2 bg-teal-900 m-2">
           <Image
             src={`https://loremflickr.com/50/50?random=${item.name}`}
             alt="product image"

@@ -1,9 +1,7 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 
-import Footer from "./components/Footer";
-import Search from "./components/search/Search";
-import Listing from "./components/listing/Listing";
+import Search from "../components/search/Search";
+import Listing from "../components/listing/Listing";
 
 export default function Home() {
   return (

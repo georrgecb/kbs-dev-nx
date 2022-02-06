@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import parse from "html-react-parser";
 import Link from "next/link";
+import JsonData from "../api/data.json";
+import Image from "next/image";
 
 const ProductPage = ({ product }) => {
   const router = useRouter();
@@ -52,7 +54,7 @@ const ProductPage = ({ product }) => {
             {parse(product.description)}
           </h5>
           {/* Price and Buy Button */}
-          <div className="text-xl pt-10 flex gap-5 text-gray-700">
+          <div className="text-xl pt-10 pb-5 flex gap-5 text-gray-700">
             <div className="flex flex-col justify-center items-center border p-2">
               <span className="font-semibold">
                 {Intl.NumberFormat("ro-RO", {
@@ -91,10 +93,8 @@ const ProductPage = ({ product }) => {
 };
 
 export default ProductPage;
-import JsonData from "./api/data.json";
-import Image from "next/image";
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   const data = JsonData.data;
 
   const paths = data.map((product) => ({
@@ -107,7 +107,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export function getStaticProps({ params }) {
   try {
     const { slug } = params;
     const data = JsonData.data.filter((product) => product.slug == slug);

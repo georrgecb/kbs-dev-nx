@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import JsonData from "../../api/data.json";
 import levenshtein from "fast-levenshtein";
@@ -8,20 +8,39 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [advancedBox, setAdvancedBox] = useState(false);
   const [searchDescription, setSearchDescription] = useState(false);
+  const [queryList, setQueryList] = useState([]);
+
+  useEffect(() => {
+    const queryData = localStorage.getItem("query-list");
+    if (queryData) {
+      setQueryList(JSON.parse(queryData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("query-list", JSON.stringify(queryList));
+  }, [queryList]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQueryList([...queryList, query]);
+  };
 
   return (
-    <section className="p-5 bg-red-200 lg:w-96 h-screen">
+    <section className="p-5 bg-red-50 lg:w-96 h-screen">
       {/* Input Search Container */}
       <div className="relative">
         {/* Input Box */}
-        <input
-          className="relative z-30 bg-red-300 appearance-none border-2 border-white w-full py-4 px-4 text-white
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            className="relative z-30 bg-red-300 appearance-none border-2 border-white w-full py-4 px-4 text-white
           text-xl leading-tight placeholder-white focus:outline-none focus:border-black"
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search"
-        />
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search"
+          />
+        </form>
         {/* Input Box Border */}
         <div className="absolute z-20 top-1 left-1 w-full h-full border-black border-r-4 border-b-4" />
         {/* Advanced Search Icon */}
@@ -38,7 +57,7 @@ const Search = () => {
         <div
           className={`${
             advancedBox ? "flex" : "hidden"
-          } absolute z-30 top-20 left-0 border-2 border-black bg-red-300 w-full h-20 justify-start p-4`}
+          } absolute z-30 top-20 left-0 border-2 border-black shadow-xl bg-red-200 w-full h-20 justify-start p-4`}
         >
           <div className="flex gap-3 justify-evenly items-center">
             <div className="form-check form-check-inline">
@@ -62,7 +81,7 @@ const Search = () => {
         <div
           className={
             query &&
-            `absolute bg-red-200 top-20 left-0 w-full border-2 border-black`
+            `absolute bg-red-50 shadow-2xl z-30 top-20 left-0 w-full border-2 border-black`
           }
         >
           {JsonData.data
@@ -84,16 +103,43 @@ const Search = () => {
             ))}
         </div>
       </div>
-      <div className="pt-32">
-        <p>
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-          et quas molestias excepturi sint occaecati cupiditate non provident,
-          similique sunt in culpa qui officia deserunt mollitia animi, id est
-          laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-          distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-          cumque nihil impedit quo minus id quod maxime placeat facere possimus,
+      <p className="flex flex-col border-4 border-gray-200 mt-5 italic justify-start p-2 text-md text-gray-700">
+        <span>Hit enter to save the search in local storage.</span>
+        <br />
+        <span>
+          Search products by name or by name and description - click on the
+          icon.
+        </span>
+        <br />
+        <span>
+          Don&apos;t worry, even if you misspelled a word, you&apos;ll still get
+          the result.
+        </span>
+        <br />
+        <span>Click on result if you want to go to the product page.</span>
+        <br />
+        <span>That&apos;s all. Thanks for stopping by!</span>
+      </p>
+      {/* Saved searches */}
+      <div className="absolute z-20  bottom-0 left-0 p-5 w-96">
+        <p className="font-semibold text-md text-gray-700">
+          Your search history:
         </p>
+        <ul>
+          {queryList &&
+            queryList
+              .slice()
+              .reverse()
+              .filter((el, index) => index < 5)
+              .map((search, index) => (
+                <li
+                  className="text-lg font-semibold italic text-white p-1 bg-red-300 w-full my-2"
+                  key={index}
+                >
+                  &quot;{search}&quot;
+                </li>
+              ))}
+        </ul>
       </div>
     </section>
   );
